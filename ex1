@@ -1,0 +1,44 @@
+#include <iostream>
+
+using namespace std; 
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+	int  B[5][5], A[5][5] = { {1,2,3,7,9}, {5,7,8,4,5}, {3,4,5,6,7}, {0,7,6,8,9}, {4,11,22,21,4} };
+    double sum1=0.0, sum2=0.0, avg1 ,avg2;
+    cout << "\nМатриця A\n";
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            if (i > j) sum1 += A[i][j];
+            else if (i < j) sum2 += A[i][j];
+            cout << A[i][j] << "\t";
+        }
+        cout << "\n";
+    }
+    avg1 = sum2 / (5 * 5 - 5) * 2;
+
+    cout << "\nCереднє арифметичне елементiв, розташованих над головною дiагоналлю =" << avg1 << "\n";
+    avg2 = sum1 / (5 * 5 - 5) * 2;
+
+    cout << "Cереднє арифметичне елементiв, розташованих пiд головною дiагоналлю =" << avg2 << "\n";
+    cout << "\nМатриця В\n";
+
+    for (int i = 0, k = 5 - 1; i < 5; ++i, --k)
+        for (int j = 0, l = 5 - 1; l > i; ++j, --l)
+        {
+            B[i][j] = A[j][i];
+            A[j][i] = A[k][l];
+            A[k][l] = B[i][j];
+        }
+
+    for (int i = 0; i < 5; ++i) {
+        for (int j = 0; j < 5; ++j)
+            cout << A[i][j] << "\t";
+        cout << endl;
+    }
+    cout << endl;
+}
+
